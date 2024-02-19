@@ -50,4 +50,8 @@ button {
 
 button:hover {
     background-color: #429d13; /* изменяем цвет фона при наведении */
+    transform: scale(1.05);
+    transition: transform 0.3s ease; /* добавляем плавное изменение цвета фона */
+
+
 }
