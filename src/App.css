@@ -1,13 +1,33 @@
 
 .App {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-around;
-    text-align: center;
+    display: block;
 
-    margin: 30px 180px;
+
+
+    margin: 10px 180px;
     height: 700px;
 }
+
+
+.top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: center;
+    margin: 50px 0;
+
+
+}
+.block {
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+
+
+
 
 input {
     align-items: center;
