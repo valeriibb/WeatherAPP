@@ -1,5 +1,8 @@
-import React from "react";
-import './weatherdata.css'
+import React, { useState, useEffect } from "react";
+import { WEATHER_API_KEY, WEATHER_API_URL } from "../api";
+import axios from "axios";
+import './weatherdata.css';
+
 function AtmItems(props) {
     return (
         <div className='AtmItems'>
@@ -10,40 +13,65 @@ function AtmItems(props) {
     );
 }
 
-export default function Weatherdata() {
+export default function Weatherdata(props) {
+    const [weatherData, setWeatherData] = useState(null);
+
+    const fetchData = async () => {
+        try {
+            const response = await axios.get(
+                `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&units=metric&appid=${WEATHER_API_KEY}`
+            );
+            setWeatherData(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, [props.city]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        fetchData();
+    };
+
     return (
         <div className="Weatherdata">
-            <div className="Temp">
-                <h1>24°C</h1>
-                <h4>Feels like: 22°C </h4>
-                <div className="Sunrise">
-                    <span>
-                        <img src="sunrise-white 1.png" alt=""/>
-                    </span>
-                    <div className="SunriseDetails">
-                        <h3>Sunrise</h3>
-                        <h3>06:37 AM</h3>
+            {weatherData && (
+                <div className="Temp">
+                    <h1>{Math.round(weatherData.main.temp)}°C</h1>
+                    <h4>Feels like: {Math.round(weatherData.main.feels_like)}°C </h4>
+                    <div className="Sunrise">
+                        <span>
+                            <img src="sunrise-white 1.png" alt=""/>
+                        </span>
+                        <div className="SunriseDetails">
+                            <h3>Sunrise</h3>
+                            <h3>{new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString()}</h3>
+                        </div>
+                    </div>
+                    <div className="Sunrise">
+                        <span>
+                            <img src="sunrise-white 1.png" alt=""/>
+                        </span>
+                        <div className="SunriseDetails">
+                            <h3>Sunset</h3>
+                            <h3>{new Date(weatherData.sys.sunset * 1000).toLocaleTimeString()}</h3>
+                        </div>
                     </div>
                 </div>
-                <div className="Sunrise">
-                    <span>
-                        <img src="sunrise-white 1.png" alt=""/>
-                    </span>
-                    <div className="SunriseDetails">
-                        <h3>Sunrise</h3>
-                        <h3>06:37 AM</h3>
-                    </div>
-                </div>
-            </div>
+            )}
             <div className="Сonditions">
-                <img src="clear 1.png" alt=""  style={{ width: '200px', height: '200px' }} />
+                <img src="clear 1.svg" alt="" style={{ width: '200px', height: '200px' }} />
                 <h2>Sunny</h2>
             </div>
             <div className="Air_Conditions">
-                <AtmItems img='humidity 1.png' data='91%' text='text'/>
-                <AtmItems img='humidity 1.png' data='91%' text='text'/>
-                <AtmItems img='humidity 1.png' data='91%' text='text'/>
-                <AtmItems img='humidity 1.png' data='91%' text='text'/>
+                <AtmItems img='humidity 1.png' data={`${weatherData && weatherData.main.humidity}%`} text='Humidity'/>
+                <AtmItems img='wind 1.png' data={`${weatherData && weatherData.main.humidity}%`} text='Humidity'/>
+                <AtmItems img='pressure-white 1.png' data={`${weatherData && weatherData.main.humidity}%`} text='Humidity'/>
+                <AtmItems img='uv-white 1.png' data={`${weatherData && weatherData.main.humidity}%`} text='Humidity'/>
+                {/* Добавьте другие параметры погоды с помощью компонента AtmItems */}
             </div>
         </div>
     );

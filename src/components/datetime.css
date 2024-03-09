@@ -1,39 +1,33 @@
-h1,h2, h3, p{
 
+h1, h2, h3, p {
     color: #fff;
 }
 
-
-
-
-.Datetime h2{
-    margin: 0;
+.Datetime h2 {
+    margin-top: 0;
+    margin-bottom: 7px;
+    font-size: 36px; /* Уменьшаем размер заголовка h2 */
 }
-
 
 h1 {
     margin: 0;
-
-
-
-
     font-family: 'Popins', sans-serif;
-    font-size: 86px;
+    font-size: 94px; /* Уменьшаем размер заголовка h1 */
     font-weight: bold;
 }
 
-h2 {
-    font-size: 40px;
-}
+
+
 .Datetime {
-    display: flex; /* Используем Flexbox */
-    flex-direction: column; /* Выстраиваем элементы в столбец */
-    justify-content: center; /* Выравниваем по центру по горизонтали */
-    align-items: center; /* Выравниваем по центру по вертикали */
-    padding-top: 10px;
+    width: 310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 40px; /* Уменьшаем внутренние отступы */
     background-color: #444;
-    padding: 0px 80px;
-    border-radius: 1em;
+    border-radius: 2em;
     text-align: center;
-    box-shadow: 3px 3px 1px 1px black;
+    box-shadow: 2px 2px 1px 1px black; /* Немного уменьшаем тень */
 }
+
