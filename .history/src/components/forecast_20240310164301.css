@@ -1,0 +1,120 @@
+
+
+.Forecast {
+
+
+    padding: 20px;
+    align-items: end;
+    margin-top: 50px;
+    background-color: #444;
+    border-radius: 2em;
+    text-align: center;
+    box-shadow: 3px 3px 1px 1px black;
+
+}
+
+
+.Forecast img {
+    margin: 0;
+    height: 55px;
+    width: 55px;
+}
+
+
+
+
+.ForItems {
+    display: flex;
+    align-items: center;
+}
+
+.ForItems p {
+    font-size: 32px;
+    font-weight: bold;
+
+}
+
+.ForItems h3  {
+
+    margin: 15px 25px;
+}
+
+
+.icon-style {
+    font-size: 10em;
+    color: #44aadd;
+  }
+  
+  .btn {
+    background-color: #44aadd;
+    min-width: 80%;
+  }
+  
+  .card {
+    width: 20rem;
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  
+  i:hover {
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 1.5s;
+  
+    /* When the animation is finished, start again */
+    /* animation-iteration-count: infinite;  */
+  }
+  
+  @keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    /* 20% { transform: translate(-3px, 0px) rotate(1deg); } */
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    /* 40% { transform: translate(1px, -1px) rotate(1deg); } */
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    /* 60% { transform: translate(-3px, 1px) rotate(0deg); } */
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    /* 80% { transform: translate(-1px, -1px) rotate(1deg); } */
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    /* 100% { transform: translate(1px, -2px) rotate(-1deg); } */
+  }
+
+
+  .icon-style {
+    font-size: 10em;
+    color: #44aadd;
+  }
+  
+  .btn {
+    background-color: #44aadd;
+    min-width: 80%;
+  }
+  
+  .card {
+    width: 20rem;
+    padding: 2rem 0;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  
+  i:hover {
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 1.5s;
+  
+    /* When the animation is finished, start again */
+    /* animation-iteration-count: infinite;  */
+  }
+  
+  @keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    /* 20% { transform: translate(-3px, 0px) rotate(1deg); } */
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    /* 40% { transform: translate(1px, -1px) rotate(1deg); } */
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    /* 60% { transform: translate(-3px, 1px) rotate(0deg); } */
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    /* 80% { transform: translate(-1px, -1px) rotate(1deg); } */
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    /* 100% { transform: translate(1px, -2px) rotate(-1deg); } */
+  }

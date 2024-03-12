@@ -19,7 +19,7 @@ export default function Weatherdata(props) {
     const fetchData = async () => {
         try {
             const response = await axios.get(
-                `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&units=metric&appid=${WEATHER_API_KEY}`
+                `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&lang=uk&units=metric&appid=${WEATHER_API_KEY}`
             );
             setWeatherData(response.data);
         } catch (error) {
@@ -31,47 +31,53 @@ export default function Weatherdata(props) {
         fetchData();
     }, [props.city]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        fetchData();
-    };
 
     return (
         <div className="Weatherdata">
             {weatherData && (
                 <div className="Temp">
                     <h1>{Math.round(weatherData.main.temp)}°C</h1>
-                    <h4>Feels like: {Math.round(weatherData.main.feels_like)}°C </h4>
+                    <h4>Відчувається як: {Math.round(weatherData.main.feels_like)}°C </h4>
                     <div className="Sunrise">
                         <span>
                             <img src="sunrise-white 1.png" alt=""/>
                         </span>
                         <div className="SunriseDetails">
-                            <h3>Sunrise</h3>
+                            <h3>Схід</h3>
                             <h3>{new Date(weatherData.sys.sunrise * 1000).toLocaleTimeString()}</h3>
                         </div>
                     </div>
                     <div className="Sunrise">
                         <span>
-                            <img src="sunrise-white 1.png" alt=""/>
+                            <img  src="sunset-white 1.png" alt=""/>
                         </span>
                         <div className="SunriseDetails">
-                            <h3>Sunset</h3>
+                            <h3>Захід</h3>
                             <h3>{new Date(weatherData.sys.sunset * 1000).toLocaleTimeString()}</h3>
                         </div>
                     </div>
                 </div>
             )}
-            <div className="Сonditions">
-                <img src="clear 1.svg" alt="" style={{ width: '200px', height: '200px' }} />
-                <h2>Sunny</h2>
+          
+            <div className="Сonditions"> 
+            {weatherData && weatherData.weather && weatherData.weather[0] && (
+                <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                    alt=""
+                    style={{ width: '200px', height: '200px' }}
+                />
+                )}
+                <h2 style={{ textTransform: "capitalize" }}>{weatherData && weatherData.weather && weatherData.weather[0] && weatherData.weather[0].description}</h2>
             </div>
+
+         
+                
+
             <div className="Air_Conditions">
-                <AtmItems img='humidity 1.png' data={`${weatherData && weatherData.main.humidity}%`} text='Humidity'/>
-                <AtmItems img='wind 1.png' data={`${weatherData && weatherData.main.humidity}%`} text='Humidity'/>
-                <AtmItems img='pressure-white 1.png' data={`${weatherData && weatherData.main.humidity}%`} text='Humidity'/>
-                <AtmItems img='uv-white 1.png' data={`${weatherData && weatherData.main.humidity}%`} text='Humidity'/>
-                {/* Добавьте другие параметры погоды с помощью компонента AtmItems */}
+            <AtmItems img='humidity 1.png' data={`${weatherData && weatherData.main.humidity}%`} text='Вологість' />
+            <AtmItems img='wind 1.png' data={`${weatherData && weatherData.wind.speed} m/s`} text='Швидкість Вітру' />
+            <AtmItems img='pressure-white 1.png' data={`${weatherData && weatherData.main.pressure} hPa`} text='Тиск' />
+            <AtmItems img='uv-white 1.png' data={weatherData && weatherData.main.value} text='Уф-індекс' />
+
             </div>
         </div>
     );

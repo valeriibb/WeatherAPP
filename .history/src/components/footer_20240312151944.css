@@ -1,0 +1,14 @@
+.Footer {
+    display: flex;
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    background-color: #909090;
+    margin: 50px 0 auto;
+    color: #000;
+    height: 100px;
+}
+
+.Footer p {
+    text-align: center;
+
+}

@@ -1,32 +1,66 @@
-
+import React, { useState, useEffect } from 'react';
+import { WEATHER_API_URL, WEATHER_API_KEY } from '../api';
 
 import './hourly.css'
-function HorItem(props) {
 
+
+function formatTime(dateTimeString) {
+    const date = new Date(dateTimeString);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`;
+}
+function HorItem(props) {
     return (
         <div className='HorItems'>
             <h3>{props.time}</h3>
             <img style={{height: '80px', width: '80px'}} src={props.icon} alt=""/>
             <h3>{props.temperature}</h3>
-            <img style={{height: '55px', width: '55px'}} src={props.direction} alt=""/>
+            <img style={{ height: '55px', width: '55px', transform: `rotate(${props.windDegree}deg)`}} src='./navigation 1.png'   alt=""/>
             <h3>{props.speed}</h3>
         </div>
     );
 }
 
-export default function Hourly() {
+export default function Hourly(props) {
+
+    const weatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&lang=ru&units=metric&APPID=${WEATHER_API_KEY}`;
+    const [hourlyData, setHourlyData] = useState([]);
+
+    useEffect(() => {
+        fetch(weatherURL)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const next5HoursData = data.list.slice(0, 5).map(item => ({
+                    time: formatTime(item.dt_txt),
+                    icon: `http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
+                    temperature: `${item.main.temp.toFixed(0)}°C`,
+                    direction_style: './navigation 1.png',
+                    speed: `${(Math.round(item.wind.speed) * 3.6 )}м/с`,
+                    windDegree: item.wind.deg
+
+
+                }));
+                setHourlyData(next5HoursData);
+            })
+            .catch(error => {
+                console.error('Exception (forecast):', error);
+            });
+    }, [props.city]);
+
     return (
         <div className="Hourly">
-            <h2>Hourly Forecast:</h2>
+            <h2>Погодинний прогноз:</h2>
             <div className="HourlyItems">
-                <HorItem time={'33'} icon='./clear 1.png' temperature='26°C' direction='./navigation 1.png' speed='3km/h' />
-                <HorItem time={'33'} icon='./clear 1.png' temperature='26°C' direction='./navigation 1.png' speed='3km/h' />
-                <HorItem time={'33'} icon='./clear 1.png' temperature='26°C' direction='./navigation 1.png' speed='3km/h' />
-                <HorItem time={'33'} icon='./clear 1.png' temperature='26°C' direction='./navigation 1.png' speed='3km/h' />
-                <HorItem time={'33'} icon='./clear 1.png' temperature='26°C' direction='./navigation 1.png' speed='3km/h' />
+                {hourlyData.map((item, index) => (
+                    <HorItem key={index} {...item} />
+                ))}
             </div>
-
         </div>
-
     );
 }

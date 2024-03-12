@@ -19,7 +19,7 @@ export default function Datetime(props) {
     }, [props.city]);
 
     function getCurrentTime(cityName) {
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${WEATHER_API_KEY}`;
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&lang=uk&appid=${WEATHER_API_KEY}`;
 
         fetch(apiUrl)
             .then(response => {
@@ -29,18 +29,16 @@ export default function Datetime(props) {
                 return response.json();
             })
             .then(data => {
-                const timestamp = data.dt; // Время в формате UNIX timestamp
-                const timezoneOffsetSeconds = data.timezone; // Смещение часового пояса в секундах
+                const timestamp = data.dt;
+                const timezoneOffsetSeconds = data.timezone; 
 
-                // Преобразуем смещение временной зоны из секунд в миллисекунды
-                const timezoneOffsetMilliseconds = timezoneOffsetSeconds - 7100; // Умножаем на 1000, а не на 100
+                const timezoneOffsetMilliseconds = timezoneOffsetSeconds - 7100;
 
-                const currentTime = new Date((timestamp + timezoneOffsetMilliseconds) * 1000); // Умножаем на 1000, а не на 100
-                const currentDate = new Date(); // Умножаем на 1000, а не на 100
+                const currentTime = new Date((timestamp + timezoneOffsetMilliseconds) * 1000); 
+                const currentDate = new Date(); 
 
-                // Форматирование времени и даты для отображения
                 setTime(currentTime.toTimeString().substring(0, 5));
-                setDate(currentDate.toDateString())
+                setDate(currentDate.toLocaleDateString('uk'))
             })
             .catch(error => {
                 console.error('Error fetching data:', error.message);
@@ -49,7 +47,7 @@ export default function Datetime(props) {
 
     return (
         <div className="Datetime">
-            <h2>{props.city.charAt(0).toUpperCase() + props.city.slice(1)}</h2>
+            <h2>{props.city ? props.city.charAt(0).toUpperCase() + props.city.slice(1) : "Kiev"}</h2>
             <h1>{time}</h1>
             <p>{date}</p>
         </div>

@@ -1,0 +1,147 @@
+
+.App {
+    display: block;
+
+
+
+    margin: 10px 180px;
+    height: 1000px;
+}
+
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    margin: 50px 0;
+
+
+}
+.block {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+
+
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
+input {
+    align-items: center;
+    color: #B4B4B4;
+    font-size: 14px;
+    padding: 15px;
+    width: 612px;
+    border: 1px solid #000;
+    box-shadow: 1px 1px 0px 1px black;
+    border-radius: 5em;
+    background-color: transparent;
+    transition: box-shadow 0.6s ease, transform 0.3s ease; /* добавляем плавное изменение тени и преобразование */
+}
+
+input[type="text"] {
+    box-shadow: 1px 2px 4px rgba(0,0,0,0.1); /* добавляем тень */
+}
+
+input:focus {
+    outline: none; /* убираем стандартный контур при фокусе */
+    transform: scale(1.05); /* увеличиваем размер при фокусе */
+}
+
+input:hover {
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.3); /* добавляем тень при наведении */
+}
+
+
+button {
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    margin-top: 11px;
+    padding: 8px 15px;
+    border-radius: 5em;
+    align-items: center;
+}
+
+
+
+button:hover {
+    background-color: #429d13; /* изменяем цвет фона при наведении */
+    transform: scale(1.05);
+    transition: transform 0.3s ease; /* добавляем плавное изменение цвета фона */
+
+
+}
+
+
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}

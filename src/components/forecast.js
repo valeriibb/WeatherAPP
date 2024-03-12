@@ -1,30 +1,68 @@
+import React, { useState, useEffect } from 'react';
+import { WEATHER_API_URL, WEATHER_API_KEY } from '../api';
+import './forecast.css';
+
+import axios from "axios";
 
 
+function Card (props) {
+  
+      const imgURL = "owf owf-"+ props.day.weather[0].id +" owf-5x icon-style"
 
-import './forecast.css'
-function ForItem(props) {
-    return (
+      const ms = props.day.dt * 1000;
+      const weekdayName = new Date(ms).toLocaleString('uk', {weekday: 'long'});
+  
+  
+  
+  
+      return (
         <div className='ForItems'>
-            <img src={props.img} alt=""/>
-            <h3>{props.data}</h3>
-            <h3>{props.text}</h3>
-        </div>
-    );
-}
 
-export default function Forecast() {
+            <img src={`http://openweathermap.org/img/wn/${props.day.weather[0].icon}@2x.png`} alt="Weather Icon" />
+            <h3>{weekdayName}</h3>
+            <h2>{Math.round(props.day.main.temp)} °C</h2>
+           
+          </div>
+      )
+  }
+
+
+
+function WeekContainer(props) {
+    const weatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&lang=ru&units=metric&APPID=${WEATHER_API_KEY}`;
+    const [days, setDays] = useState([]);
+  
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(weatherURL);
+        const dailyData = response.data.list.filter(reading => reading.dt_txt.includes("12:00:00"));
+        setDays(dailyData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  
+    useEffect(() => {
+      fetchData();
+    }, [props.city]);
+  
+    const formatCards = () => {
+      return days.map((day, index) => <Card day={day} key={index} />);
+    };
+  
     return (
-        <div className="Forecast">
-            <h2>5 Days Forecast:</h2>
-            <div className="ForecastItems">
-                <ForItem img='./clouds 1.png' data='20°C' text='Friday, 1 Sep'/>
-                <ForItem img='./clouds 1.png' data='20°C' text='Friday, 1 Sep'/>
-                <ForItem img='./clouds 1.png' data='20°C' text='Friday, 1 Sep'/>
-                <ForItem img='./clouds 1.png' data='20°C' text='Friday, 1 Sep'/>
-                <ForItem img='./clouds 1.png' data='20°C' text='Friday, 1 Sep'/>
-            </div>
-
+      <div className="Forecast">
+        <h2>Прогноз погоди на 5 днів</h2>
+        <div className="ForecastItems">
+          {formatCards()}
         </div>
-
+      </div>
     );
-}
+  }
+  export default WeekContainer
+
+
+  
+
+  
+

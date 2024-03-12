@@ -1,0 +1,101 @@
+.Weatherdata {
+    align-items: top;
+    padding: 10px; /* Уменьшаем внутренний отступ */
+    display: flex;
+    width: 55%;
+
+    background-color: #444;
+    border-radius: 2em;
+    text-align: center;
+    box-shadow: 2px 2px 1px 1px black; /* Немного уменьшаем тень */
+}
+
+.Temp {
+    margin-top: 15px;
+    text-align: left;
+}
+
+
+
+.Temp h2, h4 {
+
+
+
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+    -webkit-background-clip: text; /* Это свойство делает текст прозрачным для фонового изображения */
+    color: transparent; /* Делаем текст прозрачным */
+
+
+}
+
+.AtmItems img{
+    width: 50px;
+    height: 50px;
+
+}
+
+
+
+.AtmItems h3 {
+    margin: 8px;
+    margin-bottom: 0;
+}
+
+
+.Weatherdata span {
+    display: flex;
+    align-items: end;
+}
+
+.Weatherdata span {
+    display: flex;
+    align-items: end;
+}
+
+.Conditions {
+    padding: 0;
+    display: block;
+    align-items: center;
+}
+
+
+
+.Air_Conditions {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 0;
+    margin-bottom: auto;
+    
+
+
+}
+
+.Weatherdata h1{
+
+    font-size: 70px;
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgb(255, 255, 255));
+    -webkit-background-clip: text; /* Это свойство делает текст прозрачным для фонового изображения */
+    color: transparent; /* Делаем текст прозрачным */
+}
+
+
+.Sunrise {
+    display: flex;
+    align-items: center;
+}
+
+.SunriseDetails {
+    
+}
+
+
+.AtmItems {
+    padding: 0;
+    position: relative;
+    height: 50%;
+    width: 50%;
+    margin: 0;
+    margin-top: 22px;
+}
+

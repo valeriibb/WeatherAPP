@@ -1,0 +1,33 @@
+
+h1, h2, h3, p {
+    color: #fff;
+}
+
+.Datetime h2 {
+    margin-top: 0;
+    margin-bottom: 7px;
+    font-size: 36px; 
+}
+
+h1 {
+    margin: 0;
+    font-family: 'Popins', sans-serif;
+    font-size: 94px; 
+    font-weight: bold;
+}
+
+
+
+.Datetime {
+    width: 310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 40px; 
+    background-color: #444;
+    border-radius: 2em;
+    text-align: center;
+    box-shadow: 2px 2px 1px 1px black; /* Немного уменьшаем тень */
+}
+
